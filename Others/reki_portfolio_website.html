@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reki — IT Engineer & Digital Creative</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            violet: '#6366f1',
+                            emerald: '#10b981',
+                        },
+                        dark: {
+                            bg: '#090d16',
+                            card: '#111726',
+                            border: '#1f293d',
+                            hover: '#1a2336'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+        
+        /* Custom Glassmorphism */
+        .glass-card {
+            background: rgba(17, 23, 38, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .light .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Accent Themes */
+        .accent-cyan { --accent-color: #06b6d4; --accent-gradient: linear-gradient(135deg, #06b6d4, #3b82f6); }
+        .accent-violet { --accent-color: #8b5cf6; --accent-gradient: linear-gradient(135deg, #8b5cf6, #ec4899); }
+        .accent-emerald { --accent-color: #10b981; --accent-gradient: linear-gradient(135deg, #10b981, #06b6d4); }
+
+        .text-gradient {
+            background: var(--accent-gradient, linear-gradient(135deg, #06b6d4, #3b82f6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-accent {
+            background: var(--accent-gradient, linear-gradient(135deg, #06b6d4, #3b82f6));
+        }
+
+        .border-accent {
+            border-color: var(--accent-color, #06b6d4);
+        }
+    </style>
+</head>
+
+<body class="bg-dark-bg text-slate-200 font-sans selection:bg-cyan-500 selection:text-white transition-colors duration-300 accent-cyan light:bg-slate-50 light:text-slate-800" id="body">
+
+    <!-- Sticky Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800/60 light:border-slate-200 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-accent flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    R
+                </div>
+                <span class="font-bold text-xl tracking-tight text-white light:text-slate-900">REKI<span class="text-gradient">.</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <a href="#about" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900 rounded-lg hover:bg-slate-800/50 light:hover:bg-slate-100 transition-all">About</a>
+                <a href="#skills" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900 rounded-lg hover:bg-slate-800/50 light:hover:bg-slate-100 transition-all">Skills</a>
+                <a href="#projects" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900 rounded-lg hover:bg-slate-800/50 light:hover:bg-slate-100 transition-all">Projects</a>
+                <a href="#experience" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900 rounded-lg hover:bg-slate-800/50 light:hover:bg-slate-100 transition-all">Experience</a>
+                <a href="#contact" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900 rounded-lg hover:bg-slate-800/50 light:hover:bg-slate-100 transition-all">Contact</a>
+            </nav>
+
+            <!-- Actions Right -->
+            <div class="flex items-center gap-3">
+                <!-- Status Badge -->
+                <div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 light:bg-slate-200 border border-slate-700/50 light:border-slate-300 text-xs text-slate-300 light:text-slate-700">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>South Korea 🇰🇷 · Mongolian 🇲🇳</span>
+                </div>
+
+                <!-- Theme Accent Picker -->
+                <div class="relative group">
+                    <button class="p-2.5 rounded-xl bg-slate-800/60 light:bg-slate-200 text-slate-300 light:text-slate-700 hover:bg-slate-700/60 transition-colors" title="Change Theme Accent">
+                        <i data-lucide="palette" class="w-4 h-4"></i>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-36 py-2 px-2 rounded-xl glass-card hidden group-hover:flex flex-col gap-1 shadow-2xl border border-slate-700/60 z-50">
+                        <button onclick="setAccent('cyan')" class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800/80 w-full text-left">
+                            <span class="w-3 h-3 rounded-full bg-cyan-400"></span> Cyan Modern
+                        </button>
+                        <button onclick="setAccent('violet')" class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800/80 w-full text-left">
+                            <span class="w-3 h-3 rounded-full bg-violet-500"></span> Electric Violet
+                        </button>
+                        <button onclick="setAccent('emerald')" class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800/80 w-full text-left">
+                            <span class="w-3 h-3 rounded-full bg-emerald-400"></span> Tech Emerald
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dark / Light Mode Toggle -->
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800/60 light:bg-slate-200 text-slate-300 light:text-slate-700 hover:bg-slate-700/60 transition-colors" title="Toggle Light/Dark">
+                    <i data-lucide="moon" class="w-4 h-4 dark:block hidden"></i>
+                    <i data-lucide="sun" class="w-4 h-4 dark:hidden block"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-800/60 light:bg-slate-200 text-slate-300 light:text-slate-700 hover:bg-slate-700/60">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobileDrawer" class="hidden md:hidden border-b border-slate-800 light:border-slate-200 bg-dark-bg/95 light:bg-slate-50/95 px-4 pt-2 pb-6 space-y-2">
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 light:text-slate-700 hover:bg-slate-800 light:hover:bg-slate-200">About</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 light:text-slate-700 hover:bg-slate-800 light:hover:bg-slate-200">Skills</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 light:text-slate-700 hover:bg-slate-800 light:hover:bg-slate-200">Projects</a>
+            <a href="#experience" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 light:text-slate-700 hover:bg-slate-800 light:hover:bg-slate-200">Experience</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 light:text-slate-700 hover:bg-slate-800 light:hover:bg-slate-200">Contact</a>
+            <div class="pt-2 flex items-center gap-2 px-4 text-xs text-slate-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>South Korea 🇰🇷 · Mongolian 🇲🇳</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
+        <!-- Background Decorative Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+        <div class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Text Left -->
+                <div class="lg:col-span-7 text-left space-y-6">
+                    <!-- Top Pill -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 light:bg-slate-200 border border-slate-700/70 light:border-slate-300 text-xs font-mono text-cyan-400 light:text-cyan-700 backdrop-blur-md">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                        <span>IT Engineer · Developer · Digital Creative</span>
+                    </div>
+
+                    <!-- Main Heading -->
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white light:text-slate-900 leading-[1.15]">
+                        Hi, I'm <span class="text-gradient">Reki</span>. <br>
+                        Building Bridges in <span class="underline decoration-cyan-500/50 decoration-wavy underline-offset-8">Tech & Growth</span>.
+                    </h1>
+
+                    <!-- Catchy Paragraph Bio -->
+                    <p class="text-slate-400 light:text-slate-600 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+                        A Mongolian IT professional & university student studying Computer Information in <span class="text-slate-200 light:text-slate-900 font-semibold">South Korea</span>. I fuse software engineering, UI/UX design aesthetics, and cross-border digital marketing to construct high-impact digital experiences.
+                    </p>
+
+                    <!-- Language Pills -->
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <span class="px-3 py-1 rounded-lg bg-slate-800/60 light:bg-slate-200 border border-slate-700/40 text-xs font-medium text-slate-300 light:text-slate-700 flex items-center gap-1.5">
+                            <i data-lucide="languages" class="w-3.5 h-3.5 text-cyan-400"></i> Mongolian (Native)
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-800/60 light:bg-slate-200 border border-slate-700/40 text-xs font-medium text-slate-300 light:text-slate-700 flex items-center gap-1.5">
+                            <i data-lucide="globe" class="w-3.5 h-3.5 text-blue-400"></i> English (Fluent)
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-800/60 light:bg-slate-200 border border-slate-700/40 text-xs font-medium text-slate-300 light:text-slate-700 flex items-center gap-1.5">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i> Korean (Advanced)
+                        </span>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-accent text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                            <span>View My Projects</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-slate-800/80 light:bg-slate-200 hover:bg-slate-700 light:hover:bg-slate-300 text-slate-200 light:text-slate-800 font-semibold text-sm border border-slate-700/60 light:border-slate-300 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            <span>Contact Me</span>
+                        </a>
+                        <button onclick="downloadResume()" class="px-4 py-3.5 rounded-xl bg-slate-800/40 light:bg-slate-100 hover:bg-slate-800 light:hover:bg-slate-200 text-slate-400 hover:text-white light:text-slate-600 font-medium text-sm border border-slate-700/40 light:border-slate-300 transition-all flex items-center gap-2">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            <span>CV</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic & Floating Tech Cards Right -->
+                <div class="lg:col-span-5 relative flex justify-center items-center">
+                    <div class="relative w-full max-w-md aspect-square rounded-3xl glass-card p-6 flex flex-col justify-between border border-slate-700/60 shadow-2xl overflow-hidden group">
+                        <!-- Decorative background mesh -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-purple-500/10 pointer-events-none"></div>
+
+                        <!-- Card Header Mockup -->
+                        <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4 relative z-10">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                            </div>
+                            <span class="font-mono text-xs text-slate-500">reki_profile.ts</span>
+                        </div>
+
+                        <!-- Code Sandbox Snippet Visual -->
+                        <div class="font-mono text-xs sm:text-sm space-y-2 py-4 relative z-10 text-slate-300 light:text-slate-700 leading-relaxed">
+                            <p><span class="text-purple-400">const</span> <span class="text-cyan-400">developer</span> = {</p>
+                            <p class="pl-4"><span class="text-slate-400">name:</span> <span class="text-emerald-400">'Reki'</span>,</p>
+                            <p class="pl-4"><span class="text-slate-400">role:</span> <span class="text-emerald-400">'IT Engineer & Marketer'</span>,</p>
+                            <p class="pl-4"><span class="text-slate-400">location:</span> <span class="text-emerald-400">'South Korea 🇰🇷'</span>,</p>
+                            <p class="pl-4"><span class="text-slate-400">focus:</span> [<span class="text-amber-300">'Next.js'</span>, <span class="text-amber-300">'Social Growth'</span>, <span class="text-amber-300">'Cloud'</span>],</p>
+                            <p class="pl-4"><span class="text-slate-400">motto:</span> <span class="text-emerald-400">'Code with Purpose, Scale with Strategy'</span></p>
+                            <p>};</p>
+                        </div>
+
+                        <!-- Interactive Quick Terminal Line -->
+                        <div class="bg-slate-900/90 light:bg-slate-800 p-3 rounded-xl border border-slate-800 light:border-slate-700 font-mono text-xs text-emerald-400 flex items-center justify-between">
+                            <span class="truncate">&gt; Reki.isAvailableForProjects()</span>
+                            <span class="px-2 py-0.5 text-[10px] bg-emerald-500/20 text-emerald-300 rounded font-bold">TRUE</span>
+                        </div>
+
+                        <!-- Floating Badge 1 -->
+                        <div class="absolute -top-4 -right-4 animate-float glass-card px-4 py-2.5 rounded-2xl flex items-center gap-3 shadow-xl border border-slate-700/80">
+                            <div class="w-8 h-8 rounded-lg bg-black flex items-center justify-center text-cyan-400 font-bold text-xs">
+                                N
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-white light:text-slate-900">Next.js 14</p>
+                                <p class="text-[10px] text-slate-400">Full-Stack Web</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 2 -->
+                        <div class="absolute -bottom-4 -left-4 animate-float-delayed glass-card px-4 py-2.5 rounded-2xl flex items-center gap-3 shadow-xl border border-slate-700/80">
+                            <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center">
+                                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-white light:text-slate-900">Digital Marketing</p>
+                                <p class="text-[10px] text-slate-400">Cross-border Campaigns</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 relative bg-slate-900/40 light:bg-slate-100/60 border-y border-slate-800/60 light:border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400 mb-2">About Me</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white light:text-slate-900">Where Technical Precision Meets Creative Strategy</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-slate-800 light:border-slate-200 hover:border-cyan-500/50 transition-all group">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white light:text-slate-900 mb-3">IT & Web Development</h4>
+                    <p class="text-slate-400 light:text-slate-600 text-sm leading-relaxed">
+                        Strong background in computer information, Linux environment configuration, database architecture (MySQL), and modern web stacks like React, Next.js, and TypeScript.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-slate-800 light:border-slate-200 hover:border-violet-500/50 transition-all group">
+                    <div class="w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="megaphone" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white light:text-slate-900 mb-3">Digital Marketing & Growth</h4>
+                    <p class="text-slate-400 light:text-slate-600 text-sm leading-relaxed">
+                        Experienced in social media growth campaigns (Instagram, TikTok, Facebook). Specializing in target audience segmentation, creative reel planning, and ROI-driven marketing strategy.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-3xl border border-slate-800 light:border-slate-200 hover:border-emerald-500/50 transition-all group">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="globe-2" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white light:text-slate-900 mb-3">Cross-Cultural Strategy</h4>
+                    <p class="text-slate-400 light:text-slate-600 text-sm leading-relaxed">
+                        Fluent in Mongolian, English, and Korean. Uniquely positioned to manage cross-border projects, tech consulting, and localized marketing efforts across East Asia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 rounded-2xl glass-card border border-slate-800 light:border-slate-200 text-center">
+                <div>
+                    <span class="text-3xl font-extrabold text-cyan-400 font-mono">3+</span>
+                    <p class="text-xs text-slate-400 mt-1">Languages Spoken</p>
+                </div>
+                <div>
+                    <span class="text-3xl font-extrabold text-violet-400 font-mono">10+</span>
+                    <p class="text-xs text-slate-400 mt-1">Tech & Marketing Projects</p>
+                </div>
+                <div>
+                    <span class="text-3xl font-extrabold text-emerald-400 font-mono">KR & MN</span>
+                    <p class="text-xs text-slate-400 mt-1">Cross-Border Market Reach</p>
+                </div>
+                <div>
+                    <span class="text-3xl font-extrabold text-amber-400 font-mono">100%</span>
+                    <p class="text-xs text-slate-400 mt-1">Dedication to Results</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Matrix Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400 mb-2">Capabilities</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white light:text-slate-900">Skills & Toolset</h3>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0 p-1.5 rounded-2xl bg-slate-900/80 light:bg-slate-200 border border-slate-800 light:border-slate-300">
+                    <button onclick="filterSkills('all')" id="tab-all" class="skill-tab px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-white shadow-md transition-all">
+                        All Skills
+                    </button>
+                    <button onclick="filterSkills('dev')" id="tab-dev" class="skill-tab px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                        Development
+                    </button>
+                    <button onclick="filterSkills('marketing')" id="tab-marketing" class="skill-tab px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                        Digital Marketing
+                    </button>
+                    <button onclick="filterSkills('creative')" id="tab-creative" class="skill-tab px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                        Creative & Tools
+                    </button>
+                    <button onclick="filterSkills('soft')" id="tab-soft" class="skill-tab px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                        Soft Skills
+                    </button>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div id="skillsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Development Skills -->
+                <div class="skill-card dev glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="layers" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Next.js & React</span>
+                        </div>
+                        <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">Advanced</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-cyan-500 h-2 rounded-full w-[90%]"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card dev glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-400">
+                                <i data-lucide="file-code" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">TypeScript & JS</span>
+                        </div>
+                        <span class="text-xs font-mono text-blue-400 bg-blue-500/10 px-2 py-1 rounded">Advanced</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-blue-500 h-2 rounded-full w-[85%]"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card dev glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-teal-500/10 text-teal-400">
+                                <i data-lucide="palette" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Tailwind CSS & HTML</span>
+                        </div>
+                        <span class="text-xs font-mono text-teal-400 bg-teal-500/10 px-2 py-1 rounded">Expert</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-teal-500 h-2 rounded-full w-[95%]"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card dev glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400">
+                                <i data-lucide="database" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">MySQL & Databases</span>
+                        </div>
+                        <span class="text-xs font-mono text-amber-400 bg-amber-500/10 px-2 py-1 rounded">Intermediate</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-amber-500 h-2 rounded-full w-[80%]"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card dev glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-orange-500/10 text-orange-400">
+                                <i data-lucide="server" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Linux / Ubuntu / Git</span>
+                        </div>
+                        <span class="text-xs font-mono text-orange-400 bg-orange-500/10 px-2 py-1 rounded">Proficient</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-orange-500 h-2 rounded-full w-[82%]"></div>
+                    </div>
+                </div>
+
+                <!-- Digital Marketing Skills -->
+                <div class="skill-card marketing glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-pink-500/10 text-pink-400">
+                                <i data-lucide="share-2" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Social Media Marketing</span>
+                        </div>
+                        <span class="text-xs font-mono text-pink-400 bg-pink-500/10 px-2 py-1 rounded">Expert</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-pink-500 h-2 rounded-full w-[92%]"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card marketing glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-rose-500/10 text-rose-400">
+                                <i data-lucide="target" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Audience Research & Growth</span>
+                        </div>
+                        <span class="text-xs font-mono text-rose-400 bg-rose-500/10 px-2 py-1 rounded">Advanced</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-rose-500 h-2 rounded-full w-[88%]"></div>
+                    </div>
+                </div>
+
+                <!-- Creative & Tools -->
+                <div class="skill-card creative glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-purple-500/10 text-purple-400">
+                                <i data-lucide="video" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">CapCut & Content Editing</span>
+                        </div>
+                        <span class="text-xs font-mono text-purple-400 bg-purple-500/10 px-2 py-1 rounded">Expert</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-purple-500 h-2 rounded-full w-[90%]"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card creative glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400">
+                                <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Canva & UI Graphics</span>
+                        </div>
+                        <span class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded">Expert</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-indigo-500 h-2 rounded-full w-[94%]"></div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-card soft glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
+                                <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Problem Solving & Analytics</span>
+                        </div>
+                        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">Core</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-emerald-500 h-2 rounded-full w-[92%]"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card soft glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-violet-500/10 text-violet-400">
+                                <i data-lucide="users" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-white light:text-slate-900">Cross-Cultural Teamwork</span>
+                        </div>
+                        <span class="text-xs font-mono text-violet-400 bg-violet-500/10 px-2 py-1 rounded">Core</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div class="bg-violet-500 h-2 rounded-full w-[95%]"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-20 bg-slate-900/40 light:bg-slate-100/60 border-y border-slate-800/60 light:border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400 mb-2">Portfolio Showcase</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white light:text-slate-900">Featured Work & Projects</h3>
+                </div>
+
+                <!-- Project Filters -->
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0 p-1.5 rounded-2xl bg-slate-900/80 light:bg-slate-200 border border-slate-800 light:border-slate-300">
+                    <button onclick="filterProjects('all')" id="proj-tab-all" class="proj-tab px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-white shadow-md transition-all">All</button>
+                    <button onclick="filterProjects('web')" id="proj-tab-web" class="proj-tab px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-all">Web Dev</button>
+                    <button onclick="filterProjects('marketing')" id="proj-tab-marketing" class="proj-tab px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-all">Marketing</button>
+                    <button onclick="filterProjects('mobile')" id="proj-tab-mobile" class="proj-tab px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-all">Mobile/DB</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Project 1: SocialCMS -->
+                <div class="project-card web glass-card rounded-3xl overflow-hidden border border-slate-800 light:border-slate-200 hover:border-cyan-500/50 transition-all flex flex-col group">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/40 to-blue-900/40 group-hover:scale-105 transition-transform duration-500"></div>
+                        <!-- Visual graphic placeholder -->
+                        <div class="relative z-10 w-full max-w-sm rounded-xl bg-slate-900/90 p-4 border border-slate-700 shadow-2xl space-y-3">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                <span class="text-xs font-bold text-cyan-400 font-mono">SocialCMS Dashboard</span>
+                                <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">v1.2 Active</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2">
+                                <div class="bg-slate-800 p-2 rounded text-center"><span class="text-xs font-bold text-white">12.4K</span><p class="text-[9px] text-slate-400">Views</p></div>
+                                <div class="bg-slate-800 p-2 rounded text-center"><span class="text-xs font-bold text-white">88%</span><p class="text-[9px] text-slate-400">Engagement</p></div>
+                                <div class="bg-slate-800 p-2 rounded text-center"><span class="text-xs font-bold text-white">340</span><p class="text-[9px] text-slate-400">Posts</p></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-mono text-cyan-400 font-semibold">Web Application</span>
+                                <span class="text-xs text-slate-500">2024</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white light:text-slate-900 group-hover:text-cyan-400 transition-colors">SocialCMS — Modern Content Management</h4>
+                            <p class="text-slate-400 light:text-slate-600 text-sm mt-2 leading-relaxed">
+                                A feature-rich content management platform built with Next.js, TypeScript, and Tailwind CSS. Features dynamic user authentication, analytics dashboard, and simplified scheduling for content planning.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Next.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">TypeScript</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Tailwind CSS</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Auth & Analytics</span>
+                            </div>
+
+                            <button onclick="openProjectModal('socialcms')" class="w-full py-2.5 rounded-xl bg-slate-800/80 light:bg-slate-200 hover:bg-cyan-500 hover:text-white text-slate-200 light:text-slate-800 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                                <span>View Details & Specs</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Hospital Marketing Campaign -->
+                <div class="project-card marketing glass-card rounded-3xl overflow-hidden border border-slate-800 light:border-slate-200 hover:border-pink-500/50 transition-all flex flex-col group">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-pink-900/40 to-purple-900/40 group-hover:scale-105 transition-transform duration-500"></div>
+                        <!-- Graphic Placeholder -->
+                        <div class="relative z-10 text-center space-y-2">
+                            <div class="w-16 h-16 rounded-full bg-pink-500/20 text-pink-400 mx-auto flex items-center justify-center border border-pink-500/40 shadow-lg">
+                                <i data-lucide="instagram" class="w-8 h-8"></i>
+                            </div>
+                            <span class="block text-xs font-bold text-white font-mono">Cross-Border Digital Growth</span>
+                            <span class="inline-block text-[10px] bg-pink-500/20 text-pink-300 px-3 py-1 rounded-full border border-pink-500/30">Korean Medical Tourism → Mongolia</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-mono text-pink-400 font-semibold">Digital Marketing & Growth</span>
+                                <span class="text-xs text-slate-500">2023 - 2024</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white light:text-slate-900 group-hover:text-pink-400 transition-colors">Korean Hospital Marketing targeting Mongolia</h4>
+                            <p class="text-slate-400 light:text-slate-600 text-sm mt-2 leading-relaxed">
+                                Strategy and localization campaign designed to connect Mongolian medical tourists with top Korean clinics. Engineered localized video Reels, TikTok trends, targeted ad campaigns, and market segmentation.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Instagram / TikTok</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Content Planning</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Audience Targeting</span>
+                            </div>
+
+                            <button onclick="openProjectModal('hospital')" class="w-full py-2.5 rounded-xl bg-slate-800/80 light:bg-slate-200 hover:bg-pink-500 hover:text-white text-slate-200 light:text-slate-800 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                                <span>View Campaign Details</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Android CRUD App -->
+                <div class="project-card mobile glass-card rounded-3xl overflow-hidden border border-slate-800 light:border-slate-200 hover:border-amber-500/50 transition-all flex flex-col group">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-900/40 to-orange-900/40 group-hover:scale-105 transition-transform duration-500"></div>
+                        <div class="relative z-10 w-36 h-44 rounded-2xl bg-slate-900 border-2 border-slate-700 p-3 shadow-xl flex flex-col justify-between">
+                            <div class="w-8 h-1 bg-slate-700 rounded-full mx-auto"></div>
+                            <div class="space-y-1 my-auto text-center">
+                                <i data-lucide="smartphone" class="w-6 h-6 text-amber-400 mx-auto"></i>
+                                <span class="text-[10px] font-bold text-slate-300 block">Android + MySQL</span>
+                            </div>
+                            <div class="w-3 h-3 rounded-full border border-slate-600 mx-auto"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-mono text-amber-400 font-semibold">Mobile & Database</span>
+                                <span class="text-xs text-slate-500">2023</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white light:text-slate-900 group-hover:text-amber-400 transition-colors">Android Database Management CRUD App</h4>
+                            <p class="text-slate-400 light:text-slate-600 text-sm mt-2 leading-relaxed">
+                                Mobile application built with Java and MySQL database connectivity. Features full Create, Read, Update, and Delete operations with intuitive user interface for real-time inventory and record tracking.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Android SDK</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Java</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">MySQL</span>
+                            </div>
+
+                            <button onclick="openProjectModal('crud')" class="w-full py-2.5 rounded-xl bg-slate-800/80 light:bg-slate-200 hover:bg-amber-500 hover:text-white text-slate-200 light:text-slate-800 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                                <span>View App Specifications</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Linux Server & Custom API Projects -->
+                <div class="project-card web glass-card rounded-3xl overflow-hidden border border-slate-800 light:border-slate-200 hover:border-emerald-500/50 transition-all flex flex-col group">
+                    <div class="h-52 bg-slate-800 relative overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-emerald-900/40 to-teal-900/40 group-hover:scale-105 transition-transform duration-500"></div>
+                        <div class="relative z-10 w-full max-w-xs font-mono text-[11px] text-emerald-400 bg-slate-900/90 p-3 rounded-xl border border-slate-800 space-y-1">
+                            <p class="text-slate-500"># Ubuntu Server Config</p>
+                            <p>&gt; sudo systemctl start nginx</p>
+                            <p>&gt; node server.js --port 8080</p>
+                            <p class="text-emerald-300">[OK] REST API Live & Protected</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-mono text-emerald-400 font-semibold">Backend & Infrastructure</span>
+                                <span class="text-xs text-slate-500">2024</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white light:text-slate-900 group-hover:text-emerald-400 transition-colors">API Integration & Linux Server Environment</h4>
+                            <p class="text-slate-400 light:text-slate-600 text-sm mt-2 leading-relaxed">
+                                Deployment and configuration of Linux Ubuntu web servers, custom RESTful API integrations, Nginx reverse proxy setups, and secure database connections.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Linux/Ubuntu</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">REST APIs</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 light:bg-slate-200 text-xs text-slate-300 light:text-slate-700">Git Pipelines</span>
+                            </div>
+
+                            <button onclick="openProjectModal('api')" class="w-full py-2.5 rounded-xl bg-slate-800/80 light:bg-slate-200 hover:bg-emerald-500 hover:text-white text-slate-200 light:text-slate-800 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                                <span>View Infra Architecture</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education Timeline Section -->
+    <section id="experience" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400 mb-2">Journey & Background</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white light:text-slate-900">Education & Experience Timeline</h3>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-slate-800 light:bg-slate-300 -translate-x-1/2"></div>
+
+                <div class="space-y-12">
+                    
+                    <!-- Item 1: University -->
+                    <div class="relative flex flex-col sm:flex-row items-start sm:items-center">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-cyan-500 text-white z-10 sm:mx-auto border-4 border-dark-bg light:border-slate-50 shadow-md">
+                            <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                        </div>
+                        <div class="ml-12 sm:ml-0 sm:w-1/2 sm:pr-10 sm:text-right">
+                            <div class="glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200 hover:border-cyan-500/40 transition-all">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Current</span>
+                                <h4 class="text-lg font-bold text-white light:text-slate-900 mt-2">University Student — IT / Computer Information</h4>
+                                <p class="text-xs text-slate-400 light:text-slate-500 font-medium mt-0.5">South Korea 🇰🇷</p>
+                                <p class="text-slate-400 light:text-slate-600 text-xs mt-3 leading-relaxed">
+                                    Focusing on software architecture, web systems, mobile app engineering, Linux configuration, and data management.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Digital Marketing Specialist -->
+                    <div class="relative flex flex-col sm:flex-row items-start sm:items-center">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-pink-500 text-white z-10 sm:mx-auto border-4 border-dark-bg light:border-slate-50 shadow-md">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i>
+                        </div>
+                        <div class="ml-12 sm:ml-0 sm:w-1/2 sm:pl-10 sm:ml-auto">
+                            <div class="glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200 hover:border-pink-500/40 transition-all">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-pink-500/10 text-pink-400 border border-pink-500/20">Experience</span>
+                                <h4 class="text-lg font-bold text-white light:text-slate-900 mt-2">Digital Content Strategy & Marketing</h4>
+                                <p class="text-xs text-slate-400 light:text-slate-500 font-medium mt-0.5">South Korea & Mongolia</p>
+                                <p class="text-slate-400 light:text-slate-600 text-xs mt-3 leading-relaxed">
+                                    Led marketing campaigns targetting Mongolian audiences for Korean healthcare and service sectors. Created viral short-form video reels, managed community interaction, and performed market analysis.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Technical Background -->
+                    <div class="relative flex flex-col sm:flex-row items-start sm:items-center">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500 text-white z-10 sm:mx-auto border-4 border-dark-bg light:border-slate-50 shadow-md">
+                            <i data-lucide="code" class="w-4 h-4"></i>
+                        </div>
+                        <div class="ml-12 sm:ml-0 sm:w-1/2 sm:pr-10 sm:text-right">
+                            <div class="glass-card p-6 rounded-2xl border border-slate-800 light:border-slate-200 hover:border-emerald-500/40 transition-all">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Foundation</span>
+                                <h4 class="text-lg font-bold text-white light:text-slate-900 mt-2">IT Engineering & Application Development</h4>
+                                <p class="text-xs text-slate-400 light:text-slate-500 font-medium mt-0.5">Projects & Collaborative Work</p>
+                                <p class="text-slate-400 light:text-slate-600 text-xs mt-3 leading-relaxed">
+                                    Developed React and Next.js platforms, built native Android applications, managed relational databases, and built localized marketing funnels for clients.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-900/40 light:bg-slate-100/60 border-t border-slate-800/60 light:border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info Left -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400 mb-2">Get in Touch</h2>
+                        <h3 class="text-3xl sm:text-4xl font-bold text-white light:text-slate-900">Let's Collaborate or Build Together</h3>
+                    </div>
+                    <p class="text-slate-400 light:text-slate-600 text-sm leading-relaxed">
+                        Interested in tech consulting, web/app development, or cross-border digital marketing campaigns between Korea and Mongolia? Send a message or reach out on social platforms!
+                    </p>
+
+                    <!-- Direct Email Box -->
+                    <div class="glass-card p-4 rounded-2xl border border-slate-800 light:border-slate-200 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase font-mono text-slate-400">Direct Email</p>
+                                <p class="text-sm font-bold text-white light:text-slate-900">reki.tech.dev@gmail.com</p>
+                            </div>
+                        </div>
+                        <button onclick="copyEmail()" class="px-3 py-2 rounded-xl bg-slate-800 light:bg-slate-200 hover:bg-cyan-500 hover:text-white text-slate-300 text-xs font-semibold transition-all flex items-center gap-1.5" title="Copy Email">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+
+                    <!-- Social Networks -->
+                    <div class="pt-4">
+                        <p class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-4">Connect on Networks</p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl glass-card border border-slate-800 light:border-slate-200 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-all">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl glass-card border border-slate-800 light:border-slate-200 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 transition-all">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl glass-card border border-slate-800 light:border-slate-200 text-slate-300 hover:text-pink-400 hover:border-pink-500/50 transition-all">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                            </a>
+                            <a href="mailto:reki.tech.dev@gmail.com" class="p-3.5 rounded-2xl glass-card border border-slate-800 light:border-slate-200 text-slate-300 hover:text-emerald-400 hover:border-emerald-500/50 transition-all">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Right -->
+                <div class="lg:col-span-7">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="glass-card p-8 rounded-3xl border border-slate-800 light:border-slate-200 space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1.5">Your Name</label>
+                                <input type="text" required placeholder="e.g. Alex Park" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 light:bg-slate-100 border border-slate-800 light:border-slate-300 text-white light:text-slate-900 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1.5">Your Email</label>
+                                <input type="email" required placeholder="alex@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 light:bg-slate-100 border border-slate-800 light:border-slate-300 text-white light:text-slate-900 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1.5">Subject / Project Category</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 light:bg-slate-100 border border-slate-800 light:border-slate-300 text-slate-300 light:text-slate-900 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                                <option>Web / Next.js Development Project</option>
+                                <option>Digital Marketing & Social Media Campaign</option>
+                                <option>Tech & Market Localization Consulting</option>
+                                <option>Other Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1.5">Message</label>
+                            <textarea rows="4" required placeholder="Tell me about your project or inquiry..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 light:bg-slate-100 border border-slate-800 light:border-slate-300 text-white light:text-slate-900 text-sm focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-accent text-white font-semibold text-sm shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/35 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800/80 light:border-slate-200 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Reki. IT Engineer & Digital Creative. All rights reserved.</p>
+            <p class="flex items-center gap-1">
+                <span>Designed with precision in South Korea</span>
+                <span class="text-rose-500">♥</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal Window for Project Details -->
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-card max-w-2xl w-full rounded-3xl border border-slate-700/80 p-6 sm:p-8 relative shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-6 right-6 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div id="modalContent">
+                <!-- Dynamic Content Injected Here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900 text-white border border-cyan-500/50 shadow-2xl text-xs font-medium">
+        <i data-lucide="check-circle" class="w-4 h-4 text-cyan-400"></i>
+        <span id="toastMessage">Action completed!</span>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            const body = document.getElementById('body');
+            const isDark = body.classList.contains('dark');
+            if (isDark) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+            }
+        }
+
+        // Color Accent Picker
+        function setAccent(color) {
+            const body = document.getElementById('body');
+            body.classList.remove('accent-cyan', 'accent-violet', 'accent-emerald');
+            body.classList.add('accent-' + color);
+            showToast('Accent theme updated to ' + color);
+        }
+
+        // Mobile Navigation Toggle
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Skill Category Filter
+        function filterSkills(category) {
+            const buttons = document.querySelectorAll('.skill-tab');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeBtn = document.getElementById('tab-' + category);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-cyan-500', 'text-white', 'shadow-md');
+                activeBtn.classList.remove('text-slate-400');
+            }
+
+            const cards = document.querySelectorAll('.skill-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Project Category Filter
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.proj-tab');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeBtn = document.getElementById('proj-tab-' + category);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-cyan-500', 'text-white', 'shadow-md');
+                activeBtn.classList.remove('text-slate-400');
+            }
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Project Data for Modal
+        const projectData = {
+            socialcms: {
+                title: 'SocialCMS — Next.js Content Platform',
+                category: 'Full-Stack Web Development',
+                description: 'SocialCMS is a streamlined content management dashboard tailored for digital creators and marketers. Built with Next.js 14 and TypeScript, it allows users to draft, preview, schedule, and analyze social media posts in real-time.',
+                highlights: [
+                    'Built authentication flow using modern Web Tokens & Security Protocols',
+                    'Interactive metrics dashboard visualizing engagement analytics',
+                    'Tailwind CSS grid layout with dynamic theme switching',
+                    'Modular state management with full REST API integrations'
+                ],
+                tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'REST API']
+            },
+            hospital: {
+                title: 'Korean Hospital Marketing Strategy (Mongolia)',
+                category: 'Digital Marketing & Growth',
+                description: 'A cross-border digital marketing campaign connecting Mongolian patients with medical tourism services in South Korea. Utilized trend research, localized Mongolian copywriting, and video reels.',
+                highlights: [
+                    'Targeted demographic segmentation across Ulaanbaatar and major Mongolian hubs',
+                    'Designed high-converting video Reels & TikTok short clips with CapCut',
+                    'Achieved high engagement rate growth and directly generated inbound inquiries',
+                    'Multilingual customer flow mapping (Mongolian / Korean translation support)'
+                ],
+                tech: ['Instagram Growth', 'TikTok Strategy', 'Canva', 'CapCut', 'Market Analysis']
+            },
+            crud: {
+                title: 'Android + Java MySQL Record Manager',
+                category: 'Mobile & Database Engineering',
+                description: 'A native Android application created to handle database transactions for retail and inventory control. Communicates with a MySQL database back-end.',
+                highlights: [
+                    'Full CRUD implementation (Create, Read, Update, Delete)',
+                    'Secure database connector scripts and data validation layer',
+                    'Responsive Android UI adaptable across modern screen sizes'
+                ],
+                tech: ['Android SDK', 'Java', 'MySQL', 'Database Architecture']
+            },
+            api: {
+                title: 'Linux Server Environment & API Gateway',
+                category: 'Infrastructure & Backend',
+                description: 'Configuration of Linux Ubuntu server environments for hosting web applications and microservices.',
+                highlights: [
+                    'Configured Nginx web servers and SSH authentication security',
+                    'Built custom Node/Express RESTful APIs',
+                    'Integrated SSL certificates and domain records'
+                ],
+                tech: ['Linux / Ubuntu', 'Nginx', 'RESTful API', 'Git Pipelines']
+            }
+        };
+
+        function openProjectModal(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            const modal = document.getElementById('projectModal');
+            const content = document.getElementById('modalContent');
+
+            const techPills = data.tech.map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-cyan-400 font-mono">${t}</span>`).join(' ');
+            const highlightsList = data.highlights.map(h => `<li class="flex items-start gap-2 text-xs text-slate-300 light:text-slate-700"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span>${h}</span></li>`).join(' ');
+
+            content.innerHTML = `
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">${data.category}</span>
+                <h3 class="text-2xl font-bold text-white light:text-slate-900 mt-1 mb-4">${data.title}</h3>
+                <p class="text-slate-300 light:text-slate-600 text-sm leading-relaxed mb-6">${data.description}</p>
+                
+                <div class="space-y-3 mb-6">
+                    <h4 class="text-xs font-mono font-bold text-slate-400 uppercase">Key Features & Achievements</h4>
+                    <ul class="space-y-2">
+                        ${highlightsList}
+                    </ul>
+                </div>
+
+                <div class="space-y-3 pt-4 border-t border-slate-800 light:border-slate-200">
+                    <h4 class="text-xs font-mono font-bold text-slate-400 uppercase">Technologies Used</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${techPills}
+                    </div>
+                </div>
+            `;
+
+            lucide.createIcons();
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Copy Email Button
+        function copyEmail() {
+            const textToCopy = 'reki.tech.dev@gmail.com';
+            
+            // Clipboard Copy handling
+            const tempInput = document.createElement('input');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('Email address copied to clipboard!');
+        }
+
+        // CV Download Mock
+        function downloadResume() {
+            showToast('Downloading Reki_Resume_IT_Marketing.pdf...');
+        }
+
+        // Contact Form Submission Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contactForm');
+            showToast('Thank you! Your message has been sent to Reki.');
+            form.reset();
+        }
+
+        // Toast Feedback System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.innerText = message;
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
+        // Close modal on click outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) {
+                closeProjectModal();
+            }
+        }
+    </script>
+</body>
+</html>

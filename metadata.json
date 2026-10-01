@@ -1,0 +1,6 @@
+{
+  "name": "Personal Plan Platform",
+  "description": "Personal plan listing platform featuring task management, progress tracking, intuitive data visualizations, and authentication.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
