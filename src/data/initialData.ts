@@ -2,7 +2,7 @@ import { User, Plan, Task, ActivityLog } from '../types';
 
 export const INITIAL_USER: User = {
   id: 'usr_cuid_Reki_01',
-  name: 'Reki ',
+  name: 'Rekkki',
   email: 'Reki@example.com',
   avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
   role: 'Product Architect',

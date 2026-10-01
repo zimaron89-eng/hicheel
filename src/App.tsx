@@ -174,7 +174,7 @@ function MainApp() {
                   Personal Plan Execution Platform
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
-                  Welcome back, {user?.name || 'Reki'}
+                  Welcome back, {user?.name || 'Customer'}
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-400 mt-1 max-w-xl leading-relaxed">
                   Track your personal roadmap, execute daily milestones, and visualize goal velocity with precision data models.
