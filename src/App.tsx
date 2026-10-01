@@ -12,6 +12,7 @@ import { TaskCreateModal } from './components/TaskCreateModal';
 import { AuthModal } from './components/AuthModal';
 import { PrismaSchemaModal } from './components/PrismaSchemaModal';
 import { UserProfileModal } from './components/UserProfileModal';
+import { WorldClock } from './components/WorldClock';
 import { 
   Plus, 
   Layers, 
@@ -213,6 +214,9 @@ function MainApp() {
               tasks={tasks}
               metrics={metrics}
             />
+
+            {/* World Clock */}
+            <WorldClock />
 
             {/* Quick Link to Plans Section */}
             <div className="p-5 rounded-2xl bg-[#161618] border border-gray-800 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
